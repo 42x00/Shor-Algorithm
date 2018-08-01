@@ -796,11 +796,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Shor\\Shor\\Shor\\Shor.csproj",
+      "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor\\Shor.csproj",
       "projectName": "Shor",
-      "projectPath": "C:\\Users\\DELL\\Desktop\\Shor\\Shor\\Shor\\Shor.csproj",
+      "projectPath": "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor\\Shor.csproj",
       "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DELL\\Desktop\\Shor\\Shor\\Shor\\obj\\",
+      "outputPath": "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
