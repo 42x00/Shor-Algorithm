@@ -1,0 +1,11 @@
+C:\Users\DELL\Desktop\Shor\Shor\Shor\obj\Debug\netcoreapp2.0\Shor.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Desktop\Shor\Shor\Shor\obj\Debug\netcoreapp2.0\Shor.AssemblyInfoInputs.cache
+C:\Users\DELL\Desktop\Shor\Shor\Shor\obj\Debug\netcoreapp2.0\Shor.AssemblyInfo.cs
+C:\Users\DELL\Desktop\Shor\Shor\Shor\bin\Debug\netcoreapp2.0\Shor.deps.json
+C:\Users\DELL\Desktop\Shor\Shor\Shor\bin\Debug\netcoreapp2.0\Shor.runtimeconfig.json
+C:\Users\DELL\Desktop\Shor\Shor\Shor\bin\Debug\netcoreapp2.0\Shor.runtimeconfig.dev.json
+C:\Users\DELL\Desktop\Shor\Shor\Shor\bin\Debug\netcoreapp2.0\Shor.dll
+C:\Users\DELL\Desktop\Shor\Shor\Shor\bin\Debug\netcoreapp2.0\Shor.pdb
+C:\Users\DELL\Desktop\Shor\Shor\Shor\obj\Debug\netcoreapp2.0\Shor.dll
+C:\Users\DELL\Desktop\Shor\Shor\Shor\obj\Debug\netcoreapp2.0\Shor.pdb
+C:\Users\DELL\Desktop\Shor\Shor\Shor\obj\Debug\netcoreapp2.0\Shor.csprojAssemblyReference.cache
