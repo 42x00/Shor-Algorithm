@@ -790,30 +790,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DELL\\.nuget\\packages\\": {},
+    "C:\\Users\\lenovo\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.csproj",
+      "projectUniqueName": "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.csproj",
       "projectName": "Shor",
-      "projectPath": "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.csproj",
-      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\obj\\",
+      "projectPath": "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.csproj",
+      "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

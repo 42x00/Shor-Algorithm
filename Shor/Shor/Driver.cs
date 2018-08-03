@@ -83,6 +83,16 @@ namespace Quantum.QShor
             }
         }
 
+        static bool coPrime(long x, long y){
+            long M = (x > y)? y : x;
+            for(int i = 2; i <= M; i++){
+                if(x%i == 0 && y%i == 0){
+                    return false;
+                } 
+            }
+            return true;
+        }
+
         static void Main(string[] args)
 		{
             Console.WriteLine($"Please input the product of two prime numbers ...");
@@ -92,7 +102,9 @@ namespace Quantum.QShor
 
             while (true)
             {
-                long x = random.Next((int)N);
+                long x = random.Next((int)(N-1)) + 1;
+                System.Console.WriteLine($"Trying x = {x},N = {N}");
+                if(!coPrime(x, N)) continue;
                 double p = QfindOrder(x, N);
                 Console.WriteLine(p.ToString());
                 if (Math.Abs(p) < 1e-9) continue;
