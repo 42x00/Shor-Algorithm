@@ -1,11 +1,14 @@
 ﻿using Microsoft.Quantum.Simulation.Core;
 using Microsoft.Quantum.Simulation.Simulators;
+using System.Collections.Generic;
 using System;
 
 namespace Quantum.QShor
 {
     class Driver
     {
+        const double eps = 0;
+
         static long gcd(long x, long y)
         {
             if (x == 0) return y;
@@ -32,67 +35,10 @@ namespace Quantum.QShor
             }
         }
 
-        class fraction
-        {
-            long nume, deno;
-            public fraction()
-            {
-                this.nume = 0;
-                this.deno = 1;
-            }
-            public fraction(long nume, long deno)
-            {
-                this.nume = nume;
-                this.deno = deno;
-            }
-            public void reduce()
-            {
-                long g = gcd(this.nume, this.deno);
-                this.nume /= g;
-                this.deno /= g;
-            }
-            static public fraction operator+(fraction a, fraction b)
-            {
-                fraction res = new fraction();
-                res.deno = a.deno * b.deno;
-                res.nume = a.nume * b.deno + b.nume * a.deno;
-                res.reduce();
-                return res;
-            }
-        }
-
         static bool isSquare(long x)
         {
             long s = (long)Math.Sqrt(x);
             return s * s == x;
-        }
-
-        static void CFE(long n)
-        {
-            long[] P = new long[10000001], Q = new long[10000001], a = new long[10000001], p = new long[10000001];
-            P[0] = 0;
-            Q[0] = 1;
-            a[0] = (long)Math.Floor(Math.Sqrt(n));
-            p[0] = a[0];
-            for (int i = 1; i <= 10000000; i++)
-            {
-                P[i] = a[i - 1] * Q[i - 1] - P[i - 1];
-                Q[i] = (n - P[i] * P[i]) / Q[i - 1];
-                a[i] = (long)Math.Floor((P[i] + Math.Sqrt(n)) * 1.0 / Q[i]);
-                if (i == 1) p[i] = a[i] * p[i - 1] % n;
-                else p[i] = (a[i] * p[i - 1] + p[i - 2]) % n;
-                if ((i & 1) == 0 && isSquare(Q[i]))
-                {
-                    long s = (long)Math.Sqrt(Q[i]);
-                    long p1 = gcd(p[i - 1] - s, n), p2 = gcd(p[i - 1] + s, n);
-                    if (p1 != 1 && p2 != 1)
-                    {
-                        Console.WriteLine($"{n} = {p1} * {p2}");
-                        return;
-                    }
-                    // Console.WriteLine($"{P[i]} {Q[i]} {a[i]} {p[i]}");
-                }
-            }
         }
 
         static double QfindOrder(long x, long y){
@@ -139,18 +85,59 @@ namespace Quantum.QShor
 
         static void Main(string[] args)
 		{
-            Console.WriteLine($"Please input an odd number ...");
+            Console.WriteLine($"Please input the product of two prime numbers ...");
             long N = Convert.ToInt64(Console.ReadLine());
-            Console.WriteLine($"Fatorizing using Continued Fraction Expansion ...");
-            CFE(N);
             Console.WriteLine($"Fatorizing using Shor Quantum Algorithm ...");
+            Random random = new Random();
 
-            double p = QfindOrder(3, 10);
-            Console.WriteLine(p.ToString());
+            while (true)
+            {
+                long x = random.Next((int)N);
+                double p = QfindOrder(x, N);
+                Console.WriteLine(p.ToString());
+                if (Math.Abs(p) < 1e-9) continue;
 
-            //Console.WriteLine($"{N} = {p} * {N / p}");
-            //Console.WriteLine($"Press any key to exit ...");
-            //Console.ReadKey();
+                //Console.WriteLine($"{N} = {p} * {N / p}");
+
+                long ans = -1;
+                long[] CFE = new long[102], P = new long[102], Q = new long[102];
+                CFE[0] = 0;
+                for (int i = 1; i <= 100; i++)
+                {
+                    CFE[i] = (long)Math.Floor(1.0 / p + eps);
+                    p = 1.0 / p + eps - CFE[i];
+                    P[i + 1] = 0;
+                    Q[i + 1] = 1;
+                    for (int j = i; j >= 1; j--)
+                    {
+                        P[j] = Q[j + 1];
+                        Q[j] = P[j + 1] + Q[j + 1] * CFE[j];
+                        long g = gcd(P[j], Q[j]);
+                        P[j] /= g;
+                        Q[j] /= g;
+                        // P[1], Q[1]: similar fraction, CFE[i]: continued fraction expansion
+                        if (Q[1] != 0 && (Q[1] & 1) == 0 && qpow(x, Q[1], N) == 1)
+                        {
+                            ans = Q[1];
+                            break;
+                        }
+                    }
+                    if (ans != -1) break;
+                    if (Math.Abs(p) < 1e-9) break;
+                }
+                if (ans == -1) continue;
+                long p1 = (qpow(x, ans / 2, N) - 1 + N) % N, p2 = (qpow(x, ans / 2, N) + 1 + N) % N;
+                System.Console.WriteLine($"{p1} {p2}");
+                if (p1 == 0 || p2 == 0) continue;
+                p1 = gcd(p1, N);
+                p2 = gcd(p2, N);
+                if (p1 > 1) System.Console.WriteLine($"{N} = {p1} * {N / p1}");
+                else System.Console.WriteLine($"{N} = {p2} * {N / p2}");
+                break;
+            }
+
+            Console.WriteLine($"Press any key to exit ...");
+            Console.ReadKey();
 		}
 	}
 }

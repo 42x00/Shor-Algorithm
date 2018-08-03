@@ -4,13 +4,13 @@ using Microsoft.Quantum.Primitive;
 using Microsoft.Quantum.Simulation.Core;
 using Microsoft.Quantum.MetaData.Attributes;
 
-[assembly: OperationDeclaration("Quantum.QShor", "QFT (qb : Qubit[]) : ()", new string[] { "Adjoint" }, "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs", 575L, 24L, 31L)]
-[assembly: OperationDeclaration("Quantum.QShor", "Ux (x : Qubit[], a : Int, N : Int) : ()", new string[] { "Controlled" }, "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs", 1735L, 66L, 49L)]
-[assembly: OperationDeclaration("Quantum.QShor", "MeasureReg1 (Qb : Qubit[]) : Int[]", new string[] { }, "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs", 2365L, 90L, 46L)]
-[assembly: OperationDeclaration("Quantum.QShor", "OrderFinding (a : Int, N : Int) : Int[]", new string[] { }, "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs", 2674L, 105L, 50L)]
-[assembly: FunctionDeclaration("Quantum.QShor", "Power (a : Double, k : Int) : Double", new string[] { }, "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs", 206L, 8L, 11L)]
-[assembly: FunctionDeclaration("Quantum.QShor", "PowerInt (a : Int, k : Int) : Int", new string[] { }, "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs", 383L, 16L, 11L)]
-[assembly: FunctionDeclaration("Quantum.QShor", "modExp (x1 : Int, j1 : Int, N : Int) : Int", new string[] { }, "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs", 1874L, 73L, 11L)]
+[assembly: OperationDeclaration("Quantum.QShor", "QFT (qb : Qubit[]) : ()", new string[] { "Adjoint" }, "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs", 575L, 24L, 31L)]
+[assembly: OperationDeclaration("Quantum.QShor", "Ux (x : Qubit[], a : Int, N : Int) : ()", new string[] { "Controlled" }, "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs", 1735L, 66L, 49L)]
+[assembly: OperationDeclaration("Quantum.QShor", "MeasureReg1 (Qb : Qubit[]) : Int[]", new string[] { }, "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs", 2365L, 90L, 46L)]
+[assembly: OperationDeclaration("Quantum.QShor", "OrderFinding (a : Int, N : Int) : Int[]", new string[] { }, "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs", 2674L, 105L, 50L)]
+[assembly: FunctionDeclaration("Quantum.QShor", "Power (a : Double, k : Int) : Double", new string[] { }, "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs", 206L, 8L, 11L)]
+[assembly: FunctionDeclaration("Quantum.QShor", "PowerInt (a : Int, k : Int) : Int", new string[] { }, "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs", 383L, 16L, 11L)]
+[assembly: FunctionDeclaration("Quantum.QShor", "modExp (x1 : Int, j1 : Int, N : Int) : Int", new string[] { }, "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs", 1874L, 73L, 11L)]
 #line hidden
 namespace Quantum.QShor
 {
@@ -34,16 +34,16 @@ namespace Quantum.QShor
         public override Func<(Double,Int64), Double> Body => (__in) =>
         {
             var (a,k) = __in;
-#line 9 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 9 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             var ans = 1D;
-#line 10 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 10 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             foreach (var i in new Range(1L, k))
             {
-#line 11 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 11 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                 ans = (ans * a);
             }
 
-#line 13 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 13 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             return ans;
         }
 
@@ -80,16 +80,16 @@ namespace Quantum.QShor
         public override Func<(Int64,Int64), Int64> Body => (__in) =>
         {
             var (a,k) = __in;
-#line 17 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 17 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             var ans = 1L;
-#line 18 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 18 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             foreach (var i in new Range(1L, k))
             {
-#line 19 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 19 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                 ans = (ans * a);
             }
 
-#line 21 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 21 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             return ans;
         }
 
@@ -141,34 +141,34 @@ namespace Quantum.QShor
         public override Func<QArray<Qubit>, QVoid> Body => (__in) =>
         {
             var qb = __in;
-#line 26 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 26 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             var n = qb.Count;
-#line 27 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 27 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             var pi = MicrosoftQuantumExtensionsMathPI.Apply(QVoid.Instance);
-#line 28 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 28 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             var exp2 = new QArray<Double>((n + 1L));
-#line 29 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 29 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             foreach (var i in new Range(0L, n))
             {
-#line 30 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 30 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                 exp2[i] = Power.Apply((2D, i));
             }
 
-#line 33 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 33 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             foreach (var i in new Range(0L, (n - 1L)))
             {
-#line 34 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 34 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                 MicrosoftQuantumPrimitiveH.Apply(qb[i]);
-#line 35 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 35 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                 foreach (var j in new Range((i + 1L), (n - 1L)))
                 {
                 }
             }
 
-#line 40 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 40 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             foreach (var i in new Range(0L, ((n / 2L) - 1L)))
             {
-#line 41 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 41 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                 MicrosoftQuantumPrimitiveSWAP.Apply((qb[i], qb[((n - 1L) - i)]));
             }
 
@@ -180,37 +180,37 @@ namespace Quantum.QShor
         public override Func<QArray<Qubit>, QVoid> AdjointBody => (__in) =>
         {
             var qb = __in;
-#line 45 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 45 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             var n = qb.Count;
-#line 46 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 46 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             var pi = MicrosoftQuantumExtensionsMathPI.Apply(QVoid.Instance);
-#line 47 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 47 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             var exp2 = new QArray<Double>((n + 1L));
-#line 48 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 48 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             foreach (var i in new Range(0L, n))
             {
-#line 49 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 49 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                 exp2[i] = Power.Apply((2D, i));
             }
 
-#line 52 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 52 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             foreach (var i in new Range(0L, ((n / 2L) - 1L)))
             {
-#line 53 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 53 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                 MicrosoftQuantumPrimitiveSWAP.Apply((qb[((n - 1L) - i)], qb[i]));
             }
 
-#line 56 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 56 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             foreach (var cnt in new Range(0L, (n - 1L)))
             {
-#line 57 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 57 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                 var i = ((n - 1L) - cnt);
-#line 58 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 58 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                 foreach (var j in new Range(0L, (cnt - 1L)))
                 {
                 }
 
-#line 61 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 61 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                 MicrosoftQuantumPrimitiveH.Apply(qb[i]);
             }
 
@@ -261,7 +261,7 @@ namespace Quantum.QShor
         public override Func<(QArray<Qubit>,Int64,Int64), QVoid> Body => (__in) =>
         {
             var (x,a,N) = __in;
-#line 68 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 68 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             MicrosoftQuantumCanonModularMultiplyByConstantLE.Apply((a, N, new Microsoft.Quantum.Canon.LittleEndian(x)));
 #line hidden
             return QVoid.Instance;
@@ -310,36 +310,36 @@ namespace Quantum.QShor
         public override Func<(Int64,Int64,Int64), Int64> Body => (__in) =>
         {
             var (x1,j1,N) = __in;
-#line 74 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 74 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             var j = j1;
-#line 75 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 75 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             var ans = 1L;
-#line 76 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 76 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             var x = x1;
-#line 77 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 77 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             foreach (var i in new Range(0L, 20L))
             {
-#line 78 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 78 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                 if ((j == 0L))
                 {
-#line 79 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 79 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                     return ans;
                 }
 
-#line 81 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 81 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                 if (((j % 2L) == 1L))
                 {
-#line 82 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 82 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                     ans = ((ans * x) % N);
                 }
 
-#line 84 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 84 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                 x = ((x * x) % N);
-#line 85 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 85 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                 j = (j / 2L);
             }
 
-#line 87 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 87 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             return ans;
         }
 
@@ -373,27 +373,27 @@ namespace Quantum.QShor
         public override Func<QArray<Qubit>, QArray<Int64>> Body => (__in) =>
         {
             var Qb = __in;
-#line 92 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 92 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             var t = 7L;
-#line 93 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 93 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             var res = new QArray<Int64>(t);
-#line 94 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 94 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             foreach (var i in new Range(0L, (t - 1L)))
             {
-#line 95 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 95 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                 if ((M.Apply(Qb[i]) == Result.One))
                 {
-#line 96 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 96 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                     res[i] = 1L;
                 }
                 else
                 {
-#line 98 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 98 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                     res[i] = 0L;
                 }
             }
 
-#line 101 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 101 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             return res;
         }
 
@@ -491,40 +491,40 @@ namespace Quantum.QShor
         public override Func<(Int64,Int64), QArray<Int64>> Body => (__in) =>
         {
             var (a,N) = __in;
-#line 107 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 107 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             var L = 5L;
-#line 108 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 108 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             var t = 7L;
-#line 109 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 109 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             var res = new QArray<Int64>(t);
-#line 110 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 110 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             var qs = Allocate.Apply((L + t));
-#line 111 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 111 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             var x = qs?.Slice(new Range(0L, (t - 1L)));
-#line 112 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 112 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             var y = qs?.Slice(new Range(t, ((L + t) - 1L)));
-#line 114 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 114 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             foreach (var i in new Range(0L, (t - 1L)))
             {
-#line 115 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 115 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                 MicrosoftQuantumPrimitiveH.Apply(x[i]);
             }
 
-#line 118 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 118 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             MicrosoftQuantumPrimitiveX.Apply(y[0L]);
-#line 120 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 120 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             foreach (var i in new Range(0L, (t - 1L)))
             {
-#line 121 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 121 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                 var r = ((t - 1L) - i);
-#line 122 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 122 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
                 Ux.Controlled.Apply((new QArray<Qubit>()
                 {x[i]}, (y, modExp.Apply((a, PowerInt.Apply((2L, r)), N)), N)));
             }
 
-#line 125 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 125 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             QFT.Adjoint.Apply(x);
-#line 127 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 127 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             res = MeasureReg1.Apply(x);
             //for(i in 0..t-1){
             //    if(M(x[i]) == One){
@@ -533,11 +533,11 @@ namespace Quantum.QShor
             //        set res[i] = 0;
             //    }
             //}
-#line 135 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 135 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             ResetAll.Apply(qs);
 #line hidden
             Release.Apply(qs);
-#line 137 "C:\\Users\\lenovo\\Desktop\\ProjectQ\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
+#line 137 "C:\\Users\\DELL\\Desktop\\Shor-Algorithm\\Shor\\Shor\\Shor.qs"
             return res;
         }
 
