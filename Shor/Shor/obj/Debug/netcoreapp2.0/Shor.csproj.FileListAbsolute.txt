@@ -20,3 +20,14 @@ C:\Users\DELL\Desktop\Shor-Algorithm\Shor\Shor\Shor\obj\Debug\netcoreapp2.0\Shor
 C:\Users\DELL\Desktop\Shor-Algorithm\Shor\Shor\Shor\obj\Debug\netcoreapp2.0\Shor.AssemblyInfo.cs
 C:\Users\DELL\Desktop\Shor-Algorithm\Shor\Shor\Shor\obj\Debug\netcoreapp2.0\Shor.dll
 C:\Users\DELL\Desktop\Shor-Algorithm\Shor\Shor\Shor\obj\Debug\netcoreapp2.0\Shor.pdb
+C:\Users\lenovo\Desktop\ProjectQ\Shor-Algorithm\Shor\Shor\bin\Debug\netcoreapp2.0\Shor.deps.json
+C:\Users\lenovo\Desktop\ProjectQ\Shor-Algorithm\Shor\Shor\bin\Debug\netcoreapp2.0\Shor.runtimeconfig.json
+C:\Users\lenovo\Desktop\ProjectQ\Shor-Algorithm\Shor\Shor\bin\Debug\netcoreapp2.0\Shor.runtimeconfig.dev.json
+C:\Users\lenovo\Desktop\ProjectQ\Shor-Algorithm\Shor\Shor\bin\Debug\netcoreapp2.0\Shor.dll
+C:\Users\lenovo\Desktop\ProjectQ\Shor-Algorithm\Shor\Shor\bin\Debug\netcoreapp2.0\Shor.pdb
+C:\Users\lenovo\Desktop\ProjectQ\Shor-Algorithm\Shor\Shor\obj\Debug\netcoreapp2.0\Shor.csprojAssemblyReference.cache
+C:\Users\lenovo\Desktop\ProjectQ\Shor-Algorithm\Shor\Shor\obj\Debug\netcoreapp2.0\Shor.csproj.CoreCompileInputs.cache
+C:\Users\lenovo\Desktop\ProjectQ\Shor-Algorithm\Shor\Shor\obj\Debug\netcoreapp2.0\Shor.AssemblyInfoInputs.cache
+C:\Users\lenovo\Desktop\ProjectQ\Shor-Algorithm\Shor\Shor\obj\Debug\netcoreapp2.0\Shor.AssemblyInfo.cs
+C:\Users\lenovo\Desktop\ProjectQ\Shor-Algorithm\Shor\Shor\obj\Debug\netcoreapp2.0\Shor.dll
+C:\Users\lenovo\Desktop\ProjectQ\Shor-Algorithm\Shor\Shor\obj\Debug\netcoreapp2.0\Shor.pdb

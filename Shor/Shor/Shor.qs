@@ -3,56 +3,139 @@
     open Microsoft.Quantum.Primitive;
     open Microsoft.Quantum.Canon;
 	open Microsoft.Quantum.Extensions.Diagnostics;
+	open Microsoft.Quantum.Extensions.Math; 
 
-	operation Set(desired: Result, q1: Qubit) : ()
-	{
-		body
-		{
-			let current = M(q1);
+	function Power(a : Double, k : Int) : (Double) {
+        mutable ans = 1.0;
+        for(i in 1..k){
+            set ans = ans * a;
+        }
+        return ans;
+    }
 
-			if (desired != current)
-			{
-				X(q1); // reverse
-			}
-		}
-	}
+	function PowerInt(a : Int, k : Int) : (Int) {
+        mutable ans = 1;
+        for(i in 1..k){
+            set ans = ans * a;
+        }
+        return ans;
+    }
 
-	operation U(x : Int, y : Qubit[], N : Int) : () // U|y> = |xy mod N>
-	{
-        body
-		{
-            ModularMultiplyByConstantLE(x, N, LittleEndian(y));
+	operation QFT(qb: Qubit[]):(){
+        body{
+            let n = Length(qb);
+            let pi = PI();
+            mutable exp2 = new Double[n + 1];
+            for(i in 0..n){
+                set exp2[i] = Power(2.0, i);
+            }
+
+            for(i in 0..n-1){
+                H(qb[i]);
+                for(j in i+1..n-1){
+                    (controlled R1)([qb[j]], (2*PI/exp2[j-i+1], qb[i]));
+                }
+            }
+
+            for(i in 0..n/2 - 1){
+                SWAP(qb[i], qb[n-1-i]);
+            }
+        }
+        adjoint{
+            let n = Length(qb);
+            let pi = PI();
+            mutable exp2 = new Double[n + 1];
+            for(i in 0..n){
+                set exp2[i] = Power(2.0, i);
+            }
+
+            for(i in 0..n/2 - 1){
+                SWAP(qb[n-1-i], qb[i]);
+            }
+
+            for(cnt in 0..n-1){
+                let i = n - 1 - cnt;
+                for(j in 0..cnt - 1){
+                    (controlled R1)([qb[n - 1 - j]], (-2*pi/exp2[cnt + 2], qb[i]));
+                }
+                H(qb[i]);
+            }
         }
     }
 
-    operation BellTest() : (Result, Result)
-	{
-		body
-		{
-			// 用于保存量子位状态的可变局部变量
-			mutable s1 = Zero;
-			mutable s2 = Zero;
+	operation Ux(x : Qubit[], a : Int , N : Int):(){
+        body{
+            ModularMultiplyByConstantLE(a, N, LittleEndian(x));
+        }
+        controlled auto;
+    }
 
-			// 分配两个量子位
-			using (qubits = Qubit[2])
-			{
-				// 将第一个量子位执行阿达马门实现状态叠加
-				H(qubits[0]);
+	function modExp(x1 : Int , j1 : Int , N : Int):(Int){
+            mutable j = j1;
+            mutable ans = 1;
+            mutable x = x1;
+            for(i in 0..20){
+                if(j == 0){
+                    return ans;
+                }
+				if(j % 2 == 1){
+                    set ans = ans * x % N;
+                }
+                set x = x * x % N;
+                set j = j / 2;
+            }
+            return ans;
+    }
 
-				// 通过可控非门将两个量子进行纠缠
-				CNOT(qubits[0], qubits[1]);
-
-				// 测量两个量子位的状态
-				set s1 = M(qubits[0]);
-				set s2 = M(qubits[1]);
-
-				// 释放量子位前需要将其重置0状态
-				Set(Zero, qubits[0]);
-				Set(Zero, qubits[1]);
-			}
-
-			// 返回两个量子位的状态
-			return (s1, s2);
+	operation MeasureReg1(Qb : Qubit[]):(Int []){
+		body{
+			let t = 7;
+			mutable res = new Int[t];
+			for(i in 0..t - 1){
+    	        if(M(Qb[i]) == One){
+    	            set res[i] = 1;
+    	        }else{
+    	            set res[i] = 0;
+    	        }
+    	    }
+			return res;
 		}
 	}
+
+	operation OrderFinding(a : Int, N : Int):(Int[]){
+        body{
+            let L = 5;
+            let t = 7;
+            mutable res = new Int[t];
+            using(qs = Qubit[L+t]){
+                let x = qs[0..t-1];
+                let y = qs[t..L+t-1];
+
+                for(i in 0..t-1){
+                    H(x[i]);
+                }
+
+                X(y[0]);
+
+                for(i in 0..t-1){
+                    let r = t - 1 - i;
+                    (Controlled Ux)([x[i]], (y, modExp(a, PowerInt(2, r), N), N));
+                }
+
+                (Adjoint QFT)(x);
+
+				set res = MeasureReg1(x);
+                //for(i in 0..t-1){
+                //    if(M(x[i]) == One){
+                //        set res[i] = 1;
+                //    }else{
+                //        set res[i] = 0;
+                //    }
+                //}
+                ResetAll(qs);
+            }
+            return res;
+        }
+    }
+
 }

@@ -95,6 +95,30 @@ namespace Quantum.QShor
             }
         }
 
+        static double QfindOrder(long x, long y){
+            double SdivR = 0;
+            double t = 1.0;
+            int tbit = 7;
+            using (var sim = new QuantumSimulator())
+            {
+                var res = OrderFinding.Run(sim, x, y).Result;
+                for(int i = 0; i < tbit; i++){
+                    t = t * 2.0;
+                    if(res[i] == 1){
+                        SdivR = SdivR * 2 + 1;
+                    }else{
+                        SdivR = SdivR * 2;
+                    }
+                }
+                SdivR = SdivR / t;
+                //Show the result Qubits
+                for(int i = 0; i < tbit; i++)
+                    Console.Write($"{res[i]}");
+                Console.WriteLine($" ");
+            }       
+            return SdivR;   
+        }
+
         static long Qfactorize(long N)
         {
             Random ran = new Random();
@@ -105,6 +129,7 @@ namespace Quantum.QShor
                 long g = gcd(a, N);
                 if (g > 1) continue;
                 long r = findOrder(a, N);
+                //long r = QfindOrder(a, N);
                 if ((r & 1) == 1) continue;
                 long y = (qpow(a, r / 2, N) + 1) % N;
                 if (y == 0) continue;
@@ -119,10 +144,13 @@ namespace Quantum.QShor
             Console.WriteLine($"Fatorizing using Continued Fraction Expansion ...");
             CFE(N);
             Console.WriteLine($"Fatorizing using Shor Quantum Algorithm ...");
-            long p = Qfactorize(N);
-            Console.WriteLine($"{N} = {p} * {N / p}");
-            Console.WriteLine($"Press any key to exit ...");
-            Console.ReadKey();
+
+            double p = QfindOrder(3, 10);
+            Console.WriteLine(p.ToString());
+
+            //Console.WriteLine($"{N} = {p} * {N / p}");
+            //Console.WriteLine($"Press any key to exit ...");
+            //Console.ReadKey();
 		}
 	}
 }
