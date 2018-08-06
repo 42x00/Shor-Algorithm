@@ -21,15 +21,16 @@
         return ans;
     }
 
+//Quantum Fourier Transformation
 	operation QFT(qb: Qubit[]):(){
         body{
             let n = Length(qb);
-            let pi = PI();
             mutable exp2 = new Double[n + 1];
             for(i in 0..n){
                 set exp2[i] = Power(2.0, i);
             }
 
+            let pi = PI();
             for(i in 0..n-1){
                 H(qb[i]);
                 for(j in i+1..n-1){
@@ -37,18 +38,21 @@
                 }
             }
 
+            //Reverse the output bits
             for(i in 0..n/2 - 1){
                 SWAP(qb[i], qb[n-1-i]);
             }
         }
+
+        //Reverse the circuit
         adjoint{
             let n = Length(qb);
-            let pi = PI();
             mutable exp2 = new Double[n + 1];
             for(i in 0..n){
                 set exp2[i] = Power(2.0, i);
             }
 
+            let pi = PI();
             for(i in 0..n/2 - 1){
                 SWAP(qb[n-1-i], qb[i]);
             }
@@ -63,6 +67,7 @@
         }
     }
 
+//Controlled Unitary: U|x> = |ax mod N>
 	operation Ux(x : Qubit[], a : Int , N : Int):(){
         body{
             ModularMultiplyByConstantLE(a, N, LittleEndian(x));
@@ -70,7 +75,8 @@
         controlled auto;
     }
 
-	function modExp(x1 : Int , j1 : Int , N : Int):(Int){
+//Modular Exponentiation: U^{2^j}|x> = |x^j mod N>
+	function ModularExp(x1 : Int , j1 : Int , N : Int):(Int){
             mutable j = j1;
             mutable ans = 1;
             mutable x = x1;
@@ -104,37 +110,34 @@
 
 	operation OrderFinding(a : Int, N : Int):(Int[]){
         body{
+        //
+        // |0>————— [H] ———*—— [inv-QFT] ————— [M]
+        //                 | 
+        // |0>—— [X]————[x^j % N] ————————————— 
+        //
             let L = 5;
             let t = 7;
-            mutable res = new Int[t];
-            using(qs = Qubit[L+t]){
-                let x = qs[0..t-1];
-                let y = qs[t..L+t-1];
+            mutable Approx = new Int[t];
+            using(qb = Qubit[L + t]){
+                let x = qb[0..t - 1];
+                let y = qb[t..L + t - 1];
 
-                for(i in 0..t-1){
+                for(i in 0..t - 1){
                     H(x[i]);
                 }
-
                 X(y[0]);
 
                 for(i in 0..t-1){
                     let r = t - 1 - i;
-                    (Controlled Ux)([x[i]], (y, modExp(a, PowerInt(2, r), N), N));
+                    (Controlled Ux)([x[i]], (y, ModularExp(a, PowerInt(2, r), N), N));
                 }
 
                 (Adjoint QFT)(x);
 
-				set res = MeasureReg1(x);
-                //for(i in 0..t-1){
-                //    if(M(x[i]) == One){
-                //        set res[i] = 1;
-                //    }else{
-                //        set res[i] = 0;
-                //    }
-                //}
-                ResetAll(qs);
+				set Approx = MeasureReg1(x);
+                ResetAll(qb);
             }
-            return res;
+            return Approx;
         }
     }
 
