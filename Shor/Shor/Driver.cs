@@ -58,9 +58,10 @@ namespace Quantum.QShor
                 }
                 SdivR = SdivR / t;
                 //Show the result Qubits
-                for(int i = 0; i < tbit; i++)
+                Console.Write($"Result Qubits: ");
+                for (int i = 0; i < tbit; i++)
                     Console.Write($"{res[i]}");
-                Console.WriteLine($" ");
+                Console.WriteLine($"");
             }       
             return SdivR;   
         }
@@ -103,20 +104,22 @@ namespace Quantum.QShor
             while (true)
             {
                 long x = random.Next((int)(N-1)) + 1;
-                System.Console.WriteLine($"Trying x = {x},N = {N}");
                 if(!coPrime(x, N)) continue;
+                System.Console.WriteLine($"Trying x = {x},N = {N}");
                 double p = QfindOrder(x, N);
-                Console.WriteLine(p.ToString());
                 if (Math.Abs(p) < 1e-9) continue;
+                Console.WriteLine($"The result of order finding is: {p.ToString()}");
 
                 //Console.WriteLine($"{N} = {p} * {N / p}");
 
                 long ans = -1;
                 long[] CFE = new long[102], P = new long[102], Q = new long[102];
                 CFE[0] = 0;
+                Console.Write($"The result of continued fraction expansion is: ");
                 for (int i = 1; i <= 100; i++)
                 {
                     CFE[i] = (long)Math.Floor(1.0 / p + eps);
+                    Console.Write($"{CFE[i]} ");
                     p = 1.0 / p + eps - CFE[i];
                     P[i + 1] = 0;
                     Q[i + 1] = 1;
@@ -137,9 +140,11 @@ namespace Quantum.QShor
                     if (ans != -1) break;
                     if (Math.Abs(p) < 1e-9) break;
                 }
+                Console.WriteLine("");
                 if (ans == -1) continue;
+                Console.WriteLine($"Found {x}^{ans} MOD {N} = 1, ans = {ans}");
                 long p1 = (qpow(x, ans / 2, N) - 1 + N) % N, p2 = (qpow(x, ans / 2, N) + 1 + N) % N;
-                System.Console.WriteLine($"{p1} {p2}");
+                System.Console.WriteLine($"p1 = ({x}^({ans} / 2) - 1) MOD {N} = {p1}, p2 = ({x}^({ans} / 2) + 1) MOD {N} = {p2}");
                 if (p1 == 0 || p2 == 0) continue;
                 p1 = gcd(p1, N);
                 p2 = gcd(p2, N);
