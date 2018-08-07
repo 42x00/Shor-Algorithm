@@ -1,6 +1,7 @@
 ﻿using Microsoft.Quantum.Simulation.Core;
 using Microsoft.Quantum.Simulation.Simulators;
 using System.Collections.Generic;
+using System.Threading;
 using System;
 
 namespace Quantum.QShor
@@ -41,7 +42,7 @@ namespace Quantum.QShor
             return s * s == x;
         }
 
-        static double QfindOrder(long x, long y){
+        static double QfindOrder(long x, long y, int th){
             double SdivR = 0;
             double t = 1.0;
             int tbit = 7;
@@ -58,7 +59,7 @@ namespace Quantum.QShor
                 }
                 SdivR = SdivR / t;
                 //Show the result Qubits
-                Console.Write($"Result Qubits: ");
+                Console.Write($"Thread {th} --- Result Qubits: ");
                 for (int i = 0; i < tbit; i++)
                     Console.Write($"{res[i]}");
                 Console.WriteLine($"");
@@ -94,28 +95,40 @@ namespace Quantum.QShor
             return true;
         }
 
-        static void Main(string[] args)
-		{
-            Console.WriteLine($"Please input the product of two prime numbers ...");
-            long N = Convert.ToInt64(Console.ReadLine());
-            Console.WriteLine($"Fatorizing using Shor Quantum Algorithm ...");
-            Random random = new Random();
+        struct param
+        {
+            public int thread;
+            public long N;
+            public param(int thread, long N)
+            {
+                this.thread = thread;
+                this.N = N;
+            }
+        };
 
+        static Thread[] threadList = new Thread[11];
+
+        static void threadStart(object obj1)
+        {
+            param para = (param)obj1;
+            long N = para.N;
+            int th = para.thread;
+            Random random = new Random();
             while (true)
             {
-                long x = random.Next((int)(N-1)) + 1;
-                if(!coPrime(x, N)) continue;
-                System.Console.WriteLine($"Trying x = {x},N = {N}");
-                double p = QfindOrder(x, N);
+                long x = random.Next((int)(N - 1)) + 1;
+                if (!coPrime(x, N)) continue;
+                System.Console.WriteLine($"Thread {th} --- Trying x = {x},N = {N}");
+                double p = QfindOrder(x, N, th);
                 if (Math.Abs(p) < 1e-9) continue;
-                Console.WriteLine($"The result of order finding is: {p.ToString()}");
+                Console.WriteLine($"Thread {th} --- The result of order finding is: {p.ToString()}");
 
                 //Console.WriteLine($"{N} = {p} * {N / p}");
 
                 long ans = -1;
                 long[] CFE = new long[102], P = new long[102], Q = new long[102];
                 CFE[0] = 0;
-                Console.Write($"The result of continued fraction expansion is: ");
+                Console.Write($"Thread {th} --- The result of continued fraction expansion is: ");
                 for (int i = 1; i <= 100; i++)
                 {
                     CFE[i] = (long)Math.Floor(1.0 / p + eps);
@@ -142,19 +155,35 @@ namespace Quantum.QShor
                 }
                 Console.WriteLine("");
                 if (ans == -1) continue;
-                Console.WriteLine($"Found {x}^{ans} MOD {N} = 1, ans = {ans}");
+                Console.WriteLine($"Thread {th} --- Found {x}^{ans} MOD {N} = 1, ans = {ans}");
                 long p1 = (qpow(x, ans / 2, N) - 1 + N) % N, p2 = (qpow(x, ans / 2, N) + 1 + N) % N;
                 System.Console.WriteLine($"p1 = ({x}^({ans} / 2) - 1) MOD {N} = {p1}, p2 = ({x}^({ans} / 2) + 1) MOD {N} = {p2}");
                 if (p1 == 0 || p2 == 0) continue;
                 p1 = gcd(p1, N);
                 p2 = gcd(p2, N);
-                if (p1 > 1) System.Console.WriteLine($"{N} = {p1} * {N / p1}");
-                else System.Console.WriteLine($"{N} = {p2} * {N / p2}");
-                break;
-            }
+                if (p1 > 1) System.Console.WriteLine($"Thread {th} --- Result: {N} = {p1} * {N / p1}");
+                else System.Console.WriteLine($"Thread {th} --- Result: {N} = {p2} * {N / p2}");
 
-            Console.WriteLine($"Press any key to exit ...");
-            Console.ReadKey();
+                Console.WriteLine($"Press any key to exit ...");
+                for (int i = 1; i <= 10; i++)
+                    if (i != th)
+                        threadList[i].Abort();
+                Console.ReadKey();
+                System.Environment.Exit(0);
+            }
+        }
+
+        static void Main(string[] args)
+		{
+            Console.WriteLine($"Please input the product of two prime numbers ...");
+            long N = Convert.ToInt64(Console.ReadLine());
+            Console.WriteLine($"Fatorizing using Shor Quantum Algorithm ...");
+            
+            for (int i = 1; i <= 10; i++)
+            {
+                threadList[i] = new Thread(new ParameterizedThreadStart(threadStart));
+                threadList[i].Start(new param(i, N));
+            }
 		}
 	}
 }
